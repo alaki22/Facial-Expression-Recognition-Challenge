@@ -26,4 +26,32 @@ train accuracy - 0.69
 
 validation accuracy - 0.63
 
-3. EmotionVGG - 
+3. EmotionVGG - ეს მოდელი წინა ორზე მეტი layer-ისგან შედგება და ანუ უფრო კომპლექსურია. მთავარი დამატება აქ არის batch normalization, ის კარგი არის რეგულაციისთვის და გრადიენტების სტაბილურობაში ასრულებს როლს. ე.ი. vanishing gradient-საც უშლის ხელს. ზოგადად, ამის გარდა ასევე ასეთ მოდელებში ფილტერის ზომას შედარებით პატარას იღებენ.  უფრო პატარა ფილტერი უფრო მეტ დეტალს "იჭერს და ეს მატებს ასევე კომპლექსურობასაც.
+
+train accuracy - 0.77
+
+validation accuracy - 0.67
+
+4. CNN_GlobalAveragePooling - ეს მოდელიც არის წინას გაუმჯობესებული ვერსია რადგან აქვს GAP (Global Average Pooling). ამის გამო უფრო ნაკლებ დატასთნ უწევს ამ მოდელს მუშაობა და ბევრად უფრო სწრაფია. GAP ხელს უშლის overfit-ს და ბევრად უკეთეს გენერალიზაციას ახდენს. ასევე ის უფრო ნაკლებ სენსიტიურია სურათებში მცირე ცვლილებების მიმართ, როგორიცაა უბრალოდ პოზიციის ან კუთხის ცვლილება. ე.ი. უფრო კარგი სისწორით შეუძლია კლასიფიკაცია.
+
+ამ მოდელმა მომცა საუკეთესო შედეგი ვალიდაციაზე, ამიტომ მისი ალტერნატიული ვერსიის დატრენინგებაც და გაუმჯობესება ვცადე - CNN_GlobalAveragePooling_Alt. აქ შევცვალე layer-ების რაოდენობა,მათი მიმდევრობა, pooling layer-ების სიხშირე და  ფილტრის ზომები. თუმცა პირიქით გამიუარესა შედეგი. (train accuracy- 0.55 validation accuracy - 0.56)
+
+train accuracy - 0.74
+
+validation accuracy - 0.67
+
+test accuracy - 0.65
+
+5. BasicResidualCNN - ყველაზე მნიშვნელოვანი განსხვავება ის არის ამ მოდელის რომ ის იყენებს Residual Block-ს. ამ ბლოკებს შეუძლიათ რომ "გვერდი აუარონ" layer-ებს. ამიტომ ამ მოდელში უფრო მეტ layer-ებიანი ქსელების აგება არის შესაძლებელი,აგვარებს vanishing gradient-ის პრობლემასაც, რადგან გრადიენტები უფრო თავისუფლად გადაადგილდებიან layer-ებს შორის.
+
+train - 0.78
+val - 0.64
+
+# Wandb
+
+1. SimpleCNN - https://wandb.ai/alaki22-free-university-of-tbilisi-/FER2013_Individual_Models/runs/x5vn71kz?nw=nwuseralaki22
+2. DeeperCNN - https://wandb.ai/alaki22-free-university-of-tbilisi-/FER2013_Individual_Models/runs/6erlm9ue?nw=nwuseralaki22
+3. EmotionVGG - https://wandb.ai/alaki22-free-university-of-tbilisi-/FER2013_Individual_Models/runs/y1qvc6oi?nw=nwuseralaki22
+4. CNN_GlobalAveragePooling - https://wandb.ai/alaki22-free-university-of-tbilisi-/FER2013_New_Models_Training/runs/7n9gou4b?nw=nwuseralaki22
+5. BasicResidualCNN - https://wandb.ai/alaki22-free-university-of-tbilisi-/FER2013_Individual_Models/runs/kyrdlspn?nw=nwuseralaki22
+6. CNN_GlobalAveragePooling_Alt - https://wandb.ai/alaki22-free-university-of-tbilisi-/FER2013_New_Models_Training/runs/ybned1nm?nw=nwuseralaki22
